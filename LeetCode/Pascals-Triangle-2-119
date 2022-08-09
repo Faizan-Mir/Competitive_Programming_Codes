@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> getRow(int rowIndex) {
+        vector<int> triangle(rowIndex+1, 0);
+        
+        for(int i=0; i<=rowIndex; i++){
+            
+            triangle[0]=1;
+            triangle[i]=1;
+            
+            int prev=1; 
+            int next; 
+            for(int j=1; j<i; j++){
+                next = triangle[j];
+                triangle[j]= prev+triangle[j];
+                prev=next; 
+                
+            }
+        }
+        return triangle; 
+    }
+};
