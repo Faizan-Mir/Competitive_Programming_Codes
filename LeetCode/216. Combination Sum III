@@ -1,0 +1,33 @@
+class Solution {
+public:
+    
+    void backtrack(int start, int remaining, int remaining_c, vector<int> cur, vector<vector<int>> &list){
+        
+        if(remaining==0 && remaining_c==0){
+            list.push_back(cur);
+        }
+        
+        if(remaining<0 || remaining_c<0){
+            return;
+        }
+        
+        for(int i=start; i<10; i++){
+            cur.push_back(i);
+            backtrack(i+1, remaining-i, remaining_c-1, cur, list);
+            cur.pop_back();
+        }
+        
+        
+        
+    }
+    
+    
+    
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+        
+        backtrack(1,n,k,{},ans);
+        
+        return ans; 
+    }
+};
