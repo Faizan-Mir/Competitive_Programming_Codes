@@ -1,0 +1,35 @@
+class Solution {
+public:
+    
+    void backtrack(int start, int remaining, vector<int> &v, vector<int> cur, vector<vector<int>> &list){
+        
+        if(remaining==0){
+            list.push_back(cur);
+            return;
+        }
+        
+        if(remaining<0){
+            return;
+        }
+        
+        for(int i=start; i<v.size(); i++){
+            cur.push_back(v[i]);
+            backtrack(i, remaining-v[i], v, cur, list);
+            cur.pop_back();
+        }
+        
+        
+        
+        
+    }
+    
+    
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<vector<int>> ans;
+        
+        backtrack(0, target, candidates, {}, ans);
+        
+        return ans; 
+        
+    }
+};
